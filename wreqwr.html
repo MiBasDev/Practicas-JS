@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" onclick="buttonParams()" name="button1" id="button2">hola</button>
+    <p id="result"></p>
+    <script>
+        function buttonParams() {
+            var buttons = document.querySelectorAll('button[id^="button-"]');
+            buttons.forEach((btn) => {
+                btn.addEventListener('click', e => {
+                    return e.target.id;
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

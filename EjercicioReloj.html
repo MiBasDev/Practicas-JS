@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Reloj</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+
+        table {
+            margin-top: 200px;
+            font-weight: bold;
+        }
+
+        td {
+            border: 2px solid black;
+            background-color: aliceblue;
+        }
+
+        button {
+            background-color: aquamarine;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <table align="center">
+        <caption><b>-- HORA --</b></caption>
+        <tr>
+            <td id="time" align="center"></td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button onclick="HOUR_REFRESH = setInterval(getDate, 100, 'format24');">Reanudar</button>
+                <button onclick="clearInterval(HOUR_REFRESH);">Stop</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="radio" name="timeFormat" id="format24" value="format24" onclick="getDate('format24')"
+                    checked>
+                <label for="format24">24</label>
+                <input type="radio" name="timeFormat" id="format12" value="format12" onclick="getDate('format12')">
+                <label for="format12">12</label>
+            </td>
+        </tr>
+    </table>
+    <script>
+        // Definimos y declaramos el intervalo para refrescar la hora.
+        const HOUR_REFRESH = setInterval(getDate, 100, "format24");
+
+        // Función que controla el reloj según el formato de hora marcado.
+        function getDate(format) {
+            if (document.querySelector('input[name="timeFormat"]:checked') != null) {
+                let dateNow = new Date();
+                let choice = document.querySelector('input[name="timeFormat"]:checked').value;
+                let hours = dateNow.getHours() < 10 ? "0" + dateNow.getHours() : dateNow.getHours();
+                let minutes = dateNow.getMinutes() < 10 ? "0" + dateNow.getMinutes() : dateNow.getMinutes();
+                let seconds = dateNow.getSeconds() < 10 ? "0" + dateNow.getSeconds() : dateNow.getSeconds();
+                if (format == choice) {
+                    document.getElementById("time").innerHTML = hours + ":" + minutes + ":" + seconds;
+                } else {
+                    if (hours >= 13) {
+                        hours -= 12;
+                    }
+                    if (hours < 10) {
+                        document.getElementById("time").innerHTML = hours + ":" + minutes + ":" + seconds + " PM";
+                    }
+                    else {
+                        document.getElementById("time").innerHTML = hours - 0 + ":" + minutes + ":" + seconds + " AM";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

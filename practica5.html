@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 5 parsers</title>
+  </head>
+  <body>
+    <script>
+      document.write("<h2>" + "Entero: " + parseInt("5.25") + "</h2");
+      document.write("<br />");
+      document.write(
+        '<p style="font-size:40px">' + "Decimal: " + parseFloat("5.25") + "</p>"
+      );
+      document.write("<br />");
+      document.write(new Date() + "<br />");
+      var fecha = new Date().toDateString();
+      document.write(fecha + "<br />");
+      var hora = new Date().toUTCString();
+      document.write(hora + "<br />");
+    </script>
+  </body>
+</html>

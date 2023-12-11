@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practica 4 Tipos de objetos</title>
+  </head>
+  <body>
+    <script>
+      var x;
+      document.write(x + " ");
+      x = 5;
+      document.write(x + " ");
+      x = "hola";
+      document.write(x + "<br/>");
+
+      var cadena = "today it's sunny";
+      document.write(cadena + "<br/>");
+
+      var x = 1e5;
+      var y = 23e-5;
+      document.write("x = " + x + "-" + " y = " + y + "<br/>");
+      document.write((x > y) + "<br/>");
+
+      var coches = ["seat", "audi", "bmw"];
+      document.write(coches[2] + "<br/>");
+
+      var personaObj = {
+        nombre: "Pepe",
+        apellido: "Perez",
+        edad: 25,
+      };
+      document.write(personaObj.nombre + " " + personaObj.edad + "<br/>");
+      document.write(typeof personaObj.nombre + "<br/>");
+
+      personaObj = null;
+      document.write("Objeto: " + typeof personaObj);
+      document.write("Nombre: " + personaObj.nombre);
+    </script>
+  </body>
+</html>

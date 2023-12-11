@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 27 Eventos</title>
+</head>
+
+<body onload="iniciar()">
+    <script>
+        function setTexto01() {
+            document.getElementById("prueba").innerHTML = "Quita el ratón!!!";
+        }
+        function setTextoInicio() {
+            document.getElementById("prueba").innerHTML = "Pasa el ratón...";
+        }
+        function iniciar() {
+            document.getElementById("prueba").innerHTML = "Pasa el ratón por primera vez...";
+        }
+    </script>
+    <div id="prueba" onmouseover="setTexto01()" onmouseout="setTextoInicio()"
+        style="background-color: gray; width: 300px; height: 300px;"></div>
+</body>
+
+</html>

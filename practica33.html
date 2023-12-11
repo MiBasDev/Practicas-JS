@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 33 Navegación por Nodos</title>
+</head>
+
+<body>
+    <h1 id="id01">Ejemplo</h1>
+
+    <script>
+        var x = document.getElementById("id01").nodeName;
+        document.write("Nombre del nodo: " + x + "</br>");
+        x = document.getElementById("id01").firstChild.nodeValue;
+        document.write("Valor del nodo: " + x + "</br>");
+        x = document.getElementById("id01").nodeType;
+        document.write("Tipo del nodo: " + x + "</br>");
+    </script>
+</body>
+
+</html>

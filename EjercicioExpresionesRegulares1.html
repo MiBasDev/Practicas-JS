@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Expresiones Regulares 1</title>
+</head>
+
+<body style="background-color: grey;">
+    <table align="center" style="margin-top: 200px;">
+        <tr>
+            <td style="width: 500px; background-color: azure;" id="loremIpsum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra nunc eget ultrices lacinia.
+                Sed euismod, diam id aliquam tincidunt, sapien metus congue turpis, vel dignissim lectus metus tincidunt
+                erat. Morbi faucibus tellus a augue euismod, luctus facilisis dolor molestie. Ut in purus vel orci porta
+                porttitor at eu nulla. Morbi ultricies tincidunt massa eget pharetra. Praesent eu euismod tortor. Proin
+                eu consectetur dui. Sed pretium, tortor ut semper convallis, massa dui auctor nisi, et euismod augue
+                justo dictum ligula.
+
+                Mauris eu tincidunt justo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam dignissim
+                nulla ut massa varius auctor. Aenean interdum tellus ut lobortis ultricies. Aenean venenatis scelerisque
+                lacus. Fusce eget luctus lacus, at iaculis nunc. Nunc nec neque nec elit aliquet ultrices a sed nulla.
+                Maecenas dictum dapibus semper. Aenean venenatis nunc et lectus aliquam, ut euismod lectus accumsan.
+            </td>
+            <td style="width: 300px; align-items: baseline;" align="center">
+                <label for="textToSearch" style="font-weight: bold;">Búsqueda: </label>
+                <input type="text" name="textToSearch" id="textToSearch" placeholder="Escribe aquí">
+                <br><br>
+                <button type="button" onclick="findWord()">Buscar</button>
+                <br><br>
+                <p id="result" style="font-weight: bold;"></p>
+            </td>
+        </tr>
+    </table>
+    <script>
+        // Función que busca un string en una texto.
+        function findWord() {
+            let txt = document.getElementById("textToSearch").value;
+            let txtPattern = new RegExp(txt, "i");
+            let loremTxt = document.getElementById("loremIpsum").innerHTML;
+            document.getElementById("result").innerHTML = txtPattern.test(loremTxt);
+            document.getElementById("loremIpsum").innerHTML = loremTxt.replace(txtPattern, 
+            "<span style='background-color:red;'>"+txt+"</span>");
+        }
+    </script>
+</body>
+
+</html>

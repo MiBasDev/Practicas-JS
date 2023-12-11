@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Ley de Ohm</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        table {
+            border: 1px solid black;
+            margin-top: 200px;
+        }
+
+        input {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <table align="center">
+        <caption><b>Ley de Ohm</b></caption>
+        <tr>
+            <td align="right">
+                <input type="text" value="V = I * R" disabled>
+            </td>
+            <td align="left">
+                <input type="text" value="P = I * V" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <label for="voltaje">Voltaje: </label>
+                <input type="text" name="voltaje" id="voltaje">
+                <button type="button" onclick="calculate()">Botón</button>
+            </td>
+        <tr>
+            <td>
+                <label for="intensidad">Intensidad: </label>
+                <input type="text" name="intensidad" id="intensidad" disabled>
+            </td>
+            <td>
+                <label for="potencia">Potencia: </label>
+                <input type="text" name="potencia" id="potencia" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <label for="resistencia">Resistencia: </label>
+                <input type="text" name="resistencia" id="resistencia">
+                <button type="button" onclick="calculate()">Botón</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <p id="err_txt" style="font-weight: bold;"></p>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function calculate() {
+            let voltaje = document.getElementById("voltaje").value;
+            let resistencia = document.getElementById("resistencia").value;
+            var err_msg = document.getElementById("err_txt");
+            err_msg.innerHTML = "";
+            try {
+                if (voltaje == "" && resistencia == "") throw "Escribe un voltaje y una resistencia";
+                if (voltaje == "") throw "Escribe un voltaje";
+                if (isNaN(voltaje)) throw "El voltaje no es un número";
+                if (resistencia == "") throw "Escribe una resistencia";
+                if (isNaN(resistencia)) throw "La resistencia no es un número";
+                let intensidad = parseInt(voltaje) / parseInt(resistencia);
+                let potencia = intensidad * parseInt(voltaje);
+                document.getElementById("intensidad").value = intensidad;
+                document.getElementById("potencia").value = potencia;
+            } catch (err) {
+                err_msg.innerHTML = "Error: " + err;
+                document.getElementById("intensidad").value = "ERROR";
+                document.getElementById("potencia").value = "ERROR";
+                document.getElementById("voltaje").value = "";
+                document.getElementById("resistencia").value = "";
+            } finally {
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 23</title>
+</head>
+
+<body>
+    <p>Hola</p>
+    <p>Adios</p>
+
+    <p class="mi_par">Un párrafo cualquiera</p>
+    <p class="mi_par">Otro párrafo cualquiera</p>
+
+    <script>
+        var pars = document.getElementsByTagName("p");
+        var i = 0;
+        while (pars[i]) {
+            document.write("</br>");
+            document.write("Texto en pos " + i + " : " + pars[i].innerHTML);
+            i++;
+        }
+
+        var classes = document.getElementsByClassName("mi_par");
+        for (let i = 0; i < classes.length; i++) {
+            classes[i].style.fontWeight = "900";
+        }
+    </script>
+</body>
+
+</html>

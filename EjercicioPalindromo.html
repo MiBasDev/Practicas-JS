@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio Palíndromos</title>
+</head>
+
+<body>
+    <label for="txt">Escribe una frase palíndroma: </label>
+    <input type="text" name="txt" id="txt" placeholder="Escribe aquí" />
+    <button onclick="checkPal()">Compruébalo</button>
+    <p id="comprobacion"></p>
+    <script>
+        function checkPal() {
+            const PAL = document.getElementById("txt").value;
+            // Creamos un booleano para comprobar que sea palíndromo o no
+            let isPal = true;
+            // Dos índices para movernos por el array
+            let left = 0;
+            let right = PAL.length - 1;
+            do {
+                if (PAL[left] != PAL[right]) {
+                    isPal = false;
+                }
+                left += 1;
+                right -= 1;
+            } while (isPal && left < right);
+            // Operador ternario para sacar por pantalla si es o no palíndromo en función
+            // del valor del booleano isPal
+            document.getElementById("comprobacion").innerHTML = isPal
+                ? "Es palíndromo"
+                : "No es palíndromo";
+        }
+    </script>
+</body>
+
+</html>

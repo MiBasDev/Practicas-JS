@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 16 Ordenación de arrays</title>
+  </head>
+
+  <body>
+    <script>
+      var cadenas = ["aabc", "abc", "zcd", "ew"];
+      var numeros = [4, 40, 2, 220, 1, 10];
+
+      document.write("</br>" + cadenas.sort());
+      document.write("</br>" + numeros.sort());
+
+      /*
+        Sort pasa dos valores a la función de comparación y
+        ordena los valores según el valor que le venga
+        devuelto.
+        Si la función devuelve un positivo, b va antes que a,
+        si devuelve un negativo a va antes que b
+        */
+      document.write(
+        "</br>" +
+          numeros.sort(function (a, b) {
+            return a - b;
+          })
+      );
+
+      /*
+        Coloca los valores de forma aleatoria (función flecha)
+        */
+      document.write("</br>" + numeros.sort((a, b) => 0.5 - Math.random()));
+
+      /*
+        Devolver el máximo de un array
+        */
+      function maximo(numeros) {
+        return Math.max.apply(null, numeros);
+      }
+      document.write("</br>" + maximo(numeros));
+    </script>
+  </body>
+</html>

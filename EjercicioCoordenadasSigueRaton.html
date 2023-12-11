@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" onmousemove="follow(event)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Coordenadas sigue ratón</title>
+    <style>
+        label {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+    <label id="labelToMove"></label>
+    <script>
+        var label = document.getElementById("labelToMove");
+        // Función que hace que el label siga el ratón.
+        function follow(e) {
+            label.innerText = "(" + e.clientX + "," + e.clientY + ")";
+            label.style.top = (e.clientY - 20) + 'px';
+            label.style.left = (e.clientX - 30) + 'px';
+        }
+    </script>
+</body>
+
+</html>

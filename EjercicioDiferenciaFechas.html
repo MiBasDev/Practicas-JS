@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio diferencia de fechas</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Diferencia de fechas</legend>
+        <label for="fechaActual">Fecha actual: </label> <br>
+        <input type="text" name="fechaActual" id="fechaActual" disabled><br>
+        <label for="fechaAComparar">Fecha a comparar: </label> <br>
+        <input type="text" name="fechaAComparar" id="fechaAComparar" placeholder="dd/mm/yyyy"><br><br>
+
+        <button type="button" onclick="compareDatesMili()">Run</button><br>
+        <p id="dateDif"></p>
+        <script>
+            // Metemos la fecha actual en el input deshabilitado
+            const ACTUAL_DATE = new Date();
+            window.onload(document.getElementById("fechaActual").value = ACTUAL_DATE.getDate() + "/"
+                + (parseInt(ACTUAL_DATE.getMonth()) + 1) + "/" + ACTUAL_DATE.getFullYear());
+
+            // Función que compara la fecha actual con una pedida por teclado
+            function compareDates() {
+                // Cogemos el valor del input y lo almacenamos en un array con el split
+                const DATE_TO_COMPARE = document.getElementById("fechaAComparar").value.split("/");
+                // Calculamos la diferencia entre los años
+                let dayCompared = (parseInt(ACTUAL_DATE.getDate())) - DATE_TO_COMPARE[0];
+                let monthCompared = (parseInt(ACTUAL_DATE.getMonth()) + 1) - DATE_TO_COMPARE[1];
+                let yearCompared = (parseInt(ACTUAL_DATE.getFullYear())) - DATE_TO_COMPARE[2];
+                // Lo sacamos por pantalla
+                document.getElementById("dateDif").innerHTML = "La diferencia entre las fechas es de " +
+                    yearCompared + " años, " + monthCompared + " meses y " + dayCompared + " días.";
+            }
+
+            // Función que compara la fecha actual con una pedida por teclado pasándolo a fechas
+            function compareDates2() {
+                // Cogemos el valor del input y lo almacenamos en un array con el split
+                let dateDoc = document.getElementById("fechaAComparar").value.split("/");
+                const DATE_TO_COMPARE = new Date(parseInt(dateDoc[2]), parseInt(dateDoc[1]) - 1, parseInt(dateDoc[0]));
+                // Calculamos la diferencia entre los años
+                let dayCompared = ACTUAL_DATE.getDate() - DATE_TO_COMPARE.getDate();
+                let monthCompared = ACTUAL_DATE.getMonth() - DATE_TO_COMPARE.getMonth();
+                let yearCompared = ACTUAL_DATE.getFullYear() - DATE_TO_COMPARE.getFullYear();
+                // Lo sacamos por pantalla
+                document.getElementById("dateDif").innerHTML = "La diferencia entre las fechas es de " +
+                    yearCompared + " años, " + monthCompared + " meses y " + dayCompared + " días.";
+            }
+
+            // Función que compara la fecha actual con una pedida por teclado en mili segundos
+            function compareDatesMili() {
+                // Cogemos el valor del input y lo almacenamos en un array con el split
+                let dateDoc = document.getElementById("fechaAComparar").value.split("/");
+                const DATE_TO_COMPARE = new Date(parseInt(dateDoc[2]), parseInt(dateDoc[1]) - 1, parseInt(dateDoc[0]));
+                // Calculamos la diferencia entre los años
+                let resultMili = ACTUAL_DATE.getTime() - DATE_TO_COMPARE;
+                let daysTotal = Math.floor(resultMili / 86400000);
+                // Calculamos los años, meses y días
+                let years = Math.floor(daysTotal / 365);
+                let months = Math.floor((daysTotal % 365) / 30);
+                let days = (daysTotal % 365) % 30;
+                // Lo sacamos por pantalla
+                document.getElementById("dateDif").innerHTML = "La diferencia entre las fechas es de " + years
+                    + " años, " + months + " meses y " + days + " días.";
+            }
+        </script>
+    </fieldset>
+</body>
+
+</html>

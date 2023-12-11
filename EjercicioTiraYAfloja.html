@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Tira y Afloja</title>
+</head>
+
+<body>
+    <table align="center" style="margin-top: 200px;">
+        <caption><b><i>TIRA Y AFLOJA</i></b></caption>
+        <tr>
+            <td><b>Miguel</b></td>
+            <td><input type="text" name="game" id="game" style="width: 20px; text-align: center;"></td>
+            <td><b>Ainhoa</b></td>
+        </tr>
+        <tr>
+            <td colspan="3" id="result"></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="clearInterval(intervalMiguel), clearInterval(intervalAinhoa)">Parar</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        // Declaramos e inicializamos constantes
+        const TIMER_MIGUEL = 1;
+        const TIMER_AINHOA = 20;
+        const MIN = 500;
+        const MAX = 1000;
+        // Declaramos e inicializamos la variable timer
+        var timer = 10;
+        // Declaramos e inicializamos los intervalos
+        var intervalMiguel = setInterval(game, Math.floor(Math.random() * (MAX - MIN) + MIN), "player1");
+        var intervalAinhoa = setInterval(game, Math.floor(Math.random() * (MAX - MIN) + MIN), "player2");
+
+        // Función que mueve el juego del tira y afloja
+        function game(player) {
+            if (player == "player1") {
+                timer -= Math.floor(Math.random() * (3 - 1) + 1);
+                document.getElementById("game").value = timer;
+            } else {
+                timer += Math.floor(Math.random() * (3 - 1) + 1);
+                document.getElementById("game").value = timer;
+            }
+            if (timer <= TIMER_MIGUEL) {
+                document.getElementById("result").innerHTML = "**¡Ha ganado Miguel!**";
+                clearInterval(intervalMiguel);
+                clearInterval(intervalAinhoa);
+            } else if (timer >= TIMER_AINHOA) {
+                document.getElementById("result").innerHTML = "**¡Ha ganado Ainhoa!**";
+                clearInterval(intervalMiguel);
+                clearInterval(intervalAinhoa);
+            }
+        }
+    </script>
+</body>
+
+</html>

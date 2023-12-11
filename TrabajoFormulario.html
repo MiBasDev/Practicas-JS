@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo elementos típicos de un formulario</title>
+    <style>
+        body {
+            background-color: rgb(125, 125, 125);
+        }
+
+        form {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form input {
+            width: 90%;
+            height: 30px;
+            margin: 0.5rem;
+        }
+
+        fieldset {
+            width: 600px;
+        }
+
+        input[type="radio"]+label:before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            float: left;
+            margin: 0 11px 0 0;
+            border: 2px solid #ccc;
+            background: #fff;
+            border-radius: 100%;
+        }
+
+        input[type="radio"]:checked+label:after {
+            content: "";
+            width: 0;
+            height: 0;
+            border: 6px solid #ce495c;
+            float: left;
+            margin-left: -1.6em;
+            margin-top: 0.25em;
+            border-radius: 100%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="checkbox"]+label:before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            float: left;
+            margin: 0 11px 0 0;
+            border: 2px solid #ccc;
+            background: #fff;
+        }
+
+        input[type="checkbox"]:checked+label:after {
+            content: "";
+            width: 0;
+            height: 0;
+            border: 6px solid #ce495c;
+            float: left;
+            margin-left: -1.6em;
+            margin-top: 0.25em;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        button {
+            padding: 0.5em;
+            margin-left: 7px;
+            width: 540px;
+            border: 1px solid black;
+            background: rgb(100, 200, 255);
+            cursor: pointer;
+            transition: all .3s ease;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Formulario</legend>
+            <!--Input type text-->
+            <label for="typeText">Text: </label>
+            <input type="text" name="typeText" id="typeText">
+            </br>
+
+            <!--Input type number-->
+            <label for="typeNumber">Number: </label>
+            <input type="number" name="typeNumber" id="typeNumber">
+            </br>
+
+            <!--Input type color-->
+            <label for="typeColor">Color: </label>
+            <input type="color" name="typeColor" id="typeColor">
+            </br>
+
+            <!--Input type password-->
+            <label for="typePassword">Password: </label>
+            <input type="password" name="typePassword" id="typePassword">
+            </br>
+
+            <!--Input type date-->
+            <label for="typeDate">Date: </label>
+            <input type="date" name="typeDate" id="typeDate" value="2023-10-16">
+            </br>
+
+            <!--Input type range-->
+            <label for="typeRange">Range: </label>
+            <input type="range" name="typeRange" id="typeRange" min="0" max="10">
+            </br>
+
+            <table align="center">
+                <tr>
+                    <td>
+                        <!--Input type checkbox-->
+                        <input type="checkbox" name="typeCheckbox" id="typeCheckbox1" value="Ch1">
+                        <label for="typeCheckbox1">Checkbox 1</label>
+                        </br>
+                        <input type="checkbox" name="typeCheckbox" id="typeCheckbox2" value="Ch2">
+                        <label for="typeCheckbox2">Checkbox 2</label>
+                        </br>
+                        <input type="checkbox" name="typeCheckbox" id="typeCheckbox3" value="Ch3">
+                        <label for="typeCheckbox3">Checkbox 3</label>
+                    </td>
+                    <td>
+                        <!--Input type radio-->
+                        <input type="radio" name="typeRadio" id="typeRadio1" value="R1">
+                        <label for="typeRadio1">Radio 1</label>
+                        </br>
+                        <input type="radio" name="typeRadio" id="typeRadio2" value="R2">
+                        <label for="typeRadio2">Radio 2</label>
+                        </br>
+                        <input type="radio" name="typeRadio" id="typeRadio3" value="R3">
+                        <label for="typeRadio3">Radio 3</label>
+                    </td>
+                </tr>
+            </table>
+            </br>
+
+            <!--Input type button-->
+            <button type="button" name="typeButton" id="typeButton" onclick="getText(), getNumber(), getColor(), getPassword(), getDate(),
+                 getRange(), getCheckbox(), getRadio()">Button</button>
+            </br>
+
+            <!--Input type submit-->
+            <input type="submit" name="typeSubmit" id="typeSubmit" value="Submit" disabled>
+
+            <script>
+                // Función para coger el valor del input type text
+                function getText() {
+                    let text = document.getElementById("typeText").value;
+                    console.log("Text -> " + text);
+                }
+
+                // Función para coger el valor del input type number
+                function getNumber() {
+                    let number = document.getElementById("typeNumber").value;
+                    console.log("Number -> " + number);
+                }
+
+                // Función para coger el valor del input type color
+                function getColor() {
+                    let color = document.getElementById("typeColor").value;
+                    console.log("Color -> " + color);
+                }
+
+                // Función para coger el valor del input type password
+                function getPassword() {
+                    let password = document.getElementById("typePassword").value;
+                    console.log("Password -> " + password);
+                }
+
+                // Función para coger el valor del input type date
+                function getDate() {
+                    let date = document.querySelector('input[type="date"]').value;
+                    console.log("Date -> " + date);
+                }
+
+                // Función para coger el valor del input type range
+                function getRange() {
+                    let range = document.getElementById("typeRange").valueAsNumber;
+                    console.log("Range -> " + range);
+                }
+
+                // Función para coger el array de valores del input type checkbox y tratarlo
+                function getCheckbox() {
+                    let checkBoxList = document.getElementsByName("typeCheckbox");
+                    let checkBoxChecked = [];
+                    for (let i = 0; i < checkBoxList.length; i++) {
+                        if (checkBoxList[i].checked) {
+                            checkBoxChecked.push(checkBoxList[i]);
+                        }
+                    }
+                    checkBoxChecked.forEach(element => {
+                        console.log("CheckBox -> " + element.value);
+                    });
+                }
+
+                // Función para coger el valor del input type radio
+                function getRadio() {
+                    let radio = document.querySelector('input[name="typeRadio"]:checked').value;
+                    console.log("Radio -> " + radio);
+                }
+            </script>
+        </fieldset>
+    </form>
+</body>
+
+</html>

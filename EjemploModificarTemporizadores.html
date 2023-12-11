@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Modificar temporizadores</title>
+</head>
+
+<body>
+    <table align="center" style="margin-top: 200px;">
+        <tr>
+            <td>¿Quieres incrementar o decrementar?</td>
+        </tr>
+        <tr>
+            <!--<td align="center">
+                <input type="radio" name="choose" id="increment" value="increment" onclick="game('increment')">
+                <label for="increment">Incrementar</label>
+                <input type="radio" name="choose" id="decrement" value="decrement" onclick="game('decrement')">
+                <label for="decrement">Decrementar</label>
+            </td>-->
+            <td align="center">
+                <input type="checkbox" name="choose" id="increment" value="increment" onclick="game('increment')"
+                    checked>
+                <label for="increment">Incrementar</label>
+                <input type="checkbox" name="choose" id="decrement" value="decrement" onclick="game('decrement')">
+                <label for="decrement">Decrementar</label>
+            </td>
+        </tr>
+        <tr>
+            <td align="center"><input type="text" name="game" id="game" style="width: 30px; text-align: center;"></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center">
+                <button onclick="clearInterval(interval)">Parar</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        // Definimos la variable timer
+        var timer = 0;
+        var interval = setInterval(game, 1000, "increment");
+
+        function game(choice) {
+            if (document.querySelector('input[name="choose"]:checked') != null) {
+                let choose = document.querySelector('input[name="choose"]:checked').value;
+                if (choice == choose) {
+                    document.getElementById("game").value = timer++;
+                } else {
+                    document.getElementById("game").value = timer--;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

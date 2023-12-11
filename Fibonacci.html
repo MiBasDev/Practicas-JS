@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sucesión de Fibonacci</title>
+  </head>
+  <body>
+    <script>
+      // Función de la sucesión de Fibonacci
+      function fibonacci(num) {
+        if (num <= 1) {
+          // Si el número es 0 o 1, devolvemos el número
+          return num;
+        } else {
+          // Si el número de diferente a 0 o 1, devolvemos su
+          //anterior sumado al anterior del anterior, recursivamente
+          return fibonacci(num - 1) + fibonacci(num - 2);
+        }
+      }
+      console.log(fibonacci(9));
+    </script>
+  </body>
+</html>

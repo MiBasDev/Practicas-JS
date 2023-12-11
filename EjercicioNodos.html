@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Nodos</title>
+    <style>
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="p01">Hola</p>
+    <div id="div01">
+        <label for="img01" id="label01">Imagen:</label>
+        <img src="ranita.jpg" alt="ranita" id="img01">
+    </div>
+    <footer id="footer01">Datos de <strong id="strong01">Contacto</strong></footer>
+
+    <script>
+        var span = document.getElementById("span01");
+        var p = document.getElementById("p01");
+        var div = document.getElementById("div01");
+        var label = document.getElementById("label01");
+        var img = document.getElementById("img01");
+        var footer = document.getElementById("footer01");
+        var strong = document.getElementById("strong01");
+
+        function pInfo() {
+            console.log("Información del p:");
+            console.log("Nombre del nodo: " + p.nodeName);
+            console.log("Tipo: " + p.nodeType);
+            console.log("Contenido: " + p.childNodes[0].nodeValue);
+            console.log("Padre: " + p.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + p.parentNode.nodeType);
+            console.log("Hermano menor: " + (p.nextSibling).nextSibling.nodeName);
+            console.log("------------------------------------");
+        }
+
+        function divInfo() {
+            console.log("Información del div:");
+            console.log("Nombre del nodo: " + div.nodeName);
+            console.log("Tipo: " + div.nodeType);
+            console.log("Padre: " + div.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + div.parentNode.nodeType);
+            console.log("Hermano mayor: " + div.previousSibling.nodeName);
+            console.log("Hermano menor: " + div.nextSibling.nodeName);
+            console.log("------------------------------------");
+        }
+
+        function labelInfo() {
+            console.log("Información del label:");
+            console.log("Nombre del nodo: " + label.nodeName);
+            console.log("Tipo: " + label.nodeType);
+            console.log("Contenido: " + label.childNodes[0].nodeValue);
+            console.log("Padre: " + label.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + label.parentNode.nodeType);
+            console.log("Hermano: " + label.nextSibling.nodeName);
+            console.log("------------------------------------");
+        }
+
+        function imgInfo() {
+            console.log("Información del img:");
+            console.log("Nombre del nodo: " + img.nodeName);
+            console.log("Tipo: " + img.nodeType);
+            console.log("URL imagen: " + img.src);
+            console.log("Padre: " + img.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + img.parentNode.nodeType);
+            console.log("Hermano: " + img.previousSibling.nodeName);
+            console.log("------------------------------------");
+        }
+
+        function footerInfo() {
+            console.log("Información del footer:");
+            console.log("Nombre del nodo: " + footer.nodeName);
+            console.log("Tipo: " + footer.nodeType);
+            console.log("Contenido: " + footer.childNodes[0].nodeValue);
+            console.log("Padre: " + footer.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + footer.parentNode.nodeType);
+            console.log("Hermano mayor: " + footer.previousSibling.nodeName);
+            console.log("------------------------------------");
+        }
+
+        function strongInfo() {
+            console.log("Información del strong:");
+            console.log("Nombre del nodo: " + strong.nodeName);
+            console.log("Tipo: " + strong.nodeType);
+            console.log("Contenido: " + strong.childNodes[0].nodeValue);
+            console.log("Padre: " + strong.parentNode.nodeName);
+            console.log("Tipo nodo padre: " + strong.parentNode.nodeType);
+        }
+
+        pInfo();
+        divInfo();
+        labelInfo();
+        imgInfo();
+        footerInfo();
+        strongInfo();
+    </script>
+</body>
+
+</html>

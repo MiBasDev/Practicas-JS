@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Cuenta atrás</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+
+        table {
+            margin-top: 200px;
+            font-weight: bold;
+        }
+
+        td {
+            border: 2px solid black;
+            background-color: aliceblue;
+        }
+
+        button {
+            background-color: aquamarine;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <table align="center">
+        <caption><b>-- CUENTA ATRÁS --</b></caption>
+        <tr>
+            <td id="dateDif" align="center"></td>
+        </tr>
+    </table>
+    <script>
+        // Declaramos y definimos la fecha a alcanzar
+        const MY_BIRTHDAY = new Date("2024/07/09");
+
+        // Función que calcula la diferencia entre dos fechas en días, horas, minutos y segundos.
+        function difference() {
+            //Generamos una fecha nueva cada vez que entramos en la función.
+            let actualDate = new Date();
+            // Calculamos la diferencia y la pasamos a segundos.
+            let difference = (MY_BIRTHDAY - actualDate) / 1000;
+            // Calculamos los días, horas, minutos y segundos de la fecha.
+            let days = Math.floor(difference / 86400);
+            difference %= 86400;
+            let hours = Math.floor(difference / 3600);
+            difference %= 3600;
+            let minutes = Math.floor(difference / 60);
+            difference %= 60;
+            let seconds = Math.floor(difference);
+            document.getElementById("dateDif").innerHTML = "Quedan " + days
+                + " días, " + hours + " horas, " + minutes + " minutos y " + seconds + " segundos para mi cumpleaños.";
+
+            // Controlamos el final del contador
+            if (difference <= 0) {
+                clearInterval(interval);
+                document.getElementById("dateDif").innerHTML = "¡YA ES MI CUMPLEAÑOS!";
+            }
+        }
+
+        // Creamos un intervalo para refrescar el contador
+        var interval = setInterval(difference, 100);
+    </script>
+</body>
+
+</html>

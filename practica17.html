@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 17 Interacción sobre Arrays</title>
+</head>
+
+<body>
+    <script>
+        var numeros = [45, 4, 9, 16, 25];
+
+        // forEach()
+        function mostrarVector(valor, indice, vector) {
+            document.write("Pos " + indice + " = " + valor + "</br>");
+        }
+        numeros.forEach(mostrarVector);
+
+        // map()
+        function porDos(valor) {
+            return valor * 2;
+        }
+        var doble = numeros.map(porDos);
+        document.write(doble);
+
+        // filter()
+        function filtrar(valor) {
+            return valor > 10;
+        }
+        var filtro = numeros.filter(filtrar);
+        document.write("</br>" + filtro);
+
+        // reduce()
+        function sumar(total, valor, indice, vector) {
+            return total + valor;
+        }
+        var sumatorio = numeros.reduce(sumar);
+        document.write("</br>" + sumatorio);
+
+        // every()
+        function comprobarTodos(valor) {
+            return valor > 10;
+        }
+        document.write("</br>" + numeros.every(comprobarTodos));
+
+        // some()
+        function comprobarAlgunos(valor) {
+            return valor > 10;
+        }
+        document.write("</br>" + numeros.some(comprobarAlgunos));
+
+        // find() y findIndex()
+        function encontrar(valor) {
+            return valor == 9;
+        }
+        document.write("</br>" + numeros.find(encontrar) + " pos= " + numeros.findIndex(encontrar));
+    </script>
+</body>
+
+</html>

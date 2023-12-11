@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio dibujar reloj</title>
+    <script>
+        // Array de coordenadas de los puntos.
+        var coordsX;
+        var coordsY;
+        // Contador de los puntos
+        var countPoints = 0;
+        // Función para dibujar los puntos que harían el círculo.
+        function drawCirclePoints() {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                // Punto de inicio.
+                var x = parseInt(canvas.width) / 2;
+                var y = parseInt(canvas.height) / 2;
+                // Radio.
+                var radius = 100;
+                // Ángulos a radianes.
+                let angle1 = (30 * Math.PI) / 180;
+                let angle2 = (60 * Math.PI) / 180;
+                // Calculamos los puntos a los que vamos a saltar.
+                let x1 = Math.cos(angle1) * radius;
+                let y1 = Math.sin(angle1) * radius;
+                let x2 = Math.cos(angle2) * radius;
+                let y2 = Math.sin(angle2) * radius;
+                // Metemos las posiciones
+                coordsX = [x, x + x2, x + x1, x + radius, x + x1, x + x2, x, x - x2, x - x1, x - radius, x - x1, x - x2];
+                coordsY = [y - radius, y - y2, y - y1, y, y + y1, y + y2, y + radius, y + y2, y + y1, y, y - y1, y - y2];
+                // Pintamos los puntos del círculo.
+                let width = 2;
+                context.beginPath();
+                context.fillStyle = "red";
+                context.fillText(x, y, width, width)
+                for (let i = 0; i < coordsX.length; i++) {
+                    context.fillRect(coordsX[countPoints], coordsY[countPoints], width, width);
+                    countPoints++;
+                }
+            }
+        }
+
+        // Contador de los números.
+        let countNumbersClock = 12;
+        // Método para dibujar los números del reloj.
+        function drawCircleNumbers() {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                // Punto de inicio.
+                var x = parseInt(canvas.width) / 2;
+                var y = parseInt(canvas.height) / 2;
+                // Radio.
+                var radius = 100;
+                // Array de ángulos.
+                var angles = [30, 60];
+                // Pasamos los ángulos a radianes.
+                var positionsX = createPositionsX(angles, radius);
+                var positionsY = createPositionsY(angles, radius);
+                // Sacamos las coordenadas finales.
+                coordsX = finalCoordsX(positionsX, x, radius);
+                coordsY = finalCoordsY(positionsY, y, radius)
+                // Pintamos los puntos del círculo.
+                let width = 2;
+                context.beginPath();
+                context.fillStyle = "black";
+                context.fillText(x, y, width, width)
+                for (let i = 0; i < coordsX.length; i++) {
+                    context.fillText(countNumbersClock, coordsX[countPoints], coordsY[countPoints]);
+                    countNumbersClock++;
+                    countPoints++;
+                    if (countNumbersClock == 13) {
+                        countNumbersClock = 1;
+                    }
+                }
+            }
+        }
+
+        // Función para sacar las coordenadas finales de X.
+        function finalCoordsX(positionsX, x, radius) {
+            let finalCoords = [];
+            finalCoords.push(x);
+            positionsX.reverse();
+            for (let i = 0; i < positionsX.length; i++) {
+                finalCoords.push(x + positionsX[i]);
+            }
+            finalCoords.push(x + radius);
+            positionsX.reverse();
+            for (let i = 0; i < positionsX.length; i++) {
+                finalCoords.push(x + positionsX[i]);
+            }
+            finalCoords.push(x);
+            positionsX.reverse();
+            for (let i = 0; i < positionsX.length; i++) {
+                finalCoords.push(x - positionsX[i]);
+            }
+            finalCoords.push(x - radius);
+            positionsX.reverse();
+            for (let i = 0; i < positionsX.length; i++) {
+                finalCoords.push(x - positionsX[i]);
+            }
+            return finalCoords;
+        }
+
+        // Función para sacar las coordenadas finales de Y.
+        function finalCoordsY(positionsY, y, radius) {
+            let finalCoords = [];
+            finalCoords.push(y - radius);
+            positionsY.reverse();
+            for (let i = 0; i < positionsY.length; i++) {
+                finalCoords.push(y - positionsY[i]);
+            }
+            finalCoords.push(y);
+            positionsY.reverse();
+            for (let i = 0; i < positionsY.length; i++) {
+                finalCoords.push(y + positionsY[i]);
+            }
+            finalCoords.push(y + radius);
+            positionsY.reverse();
+            for (let i = 0; i < positionsY.length; i++) {
+                finalCoords.push(y + positionsY[i]);
+            }
+            finalCoords.push(y);
+            positionsY.reverse();
+            for (let i = 0; i < positionsY.length; i++) {
+                finalCoords.push(y - positionsY[i]);
+            }
+            return finalCoords;
+        }
+
+        // Función para calcular los radianes de los ángulos de X.
+        function createPositionsX(angles, radius) {
+            var positionsX = [];
+            angles.forEach(value => {
+                positionsX.push(Math.cos((value * Math.PI) / 180) * radius);
+            });
+            return positionsX;
+        }
+
+        // Función para calcular los radianes de los ángulos de Y.
+        function createPositionsY(angles, radius) {
+            var positionsY = [];
+            angles.forEach(value => {
+                positionsY.push(Math.sin((value * Math.PI) / 180) * radius);
+            });
+            return positionsY;
+        }
+
+        // Contador de saltos del reloj.
+        var count = 0;
+        // Método que mueve la aguja del reloj.
+        function loadReloj(event) {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                // Centro del reloj.
+                var x = parseInt(canvas.width) / 2;
+                var y = parseInt(canvas.height) / 2;
+                // Controladores para borrar agujas.
+                if (count > 0) {
+                    drawLineClock(context, x, y, count - 1, 3, "white");
+                }
+                if (count == 0) {
+                    drawLineClock(context, x, y, coordsX.length - 1, 3, "white")
+                }
+                // Pintamos la aguja.
+                drawLineClock(context, x, y, count, 2, "black")
+                count++;
+                if (count == coordsX.length) {
+                    count = 0;
+                }
+            }
+        }
+
+        // Método que pinta la aguja del reloj.
+        function drawLineClock(context, x, y, num, width, color) {
+            context.beginPath();
+            context.moveTo(x, y);
+            context.lineTo(coordsX[num], coordsY[num]);
+            context.lineWidth = width;
+            context.strokeStyle = color;
+            context.stroke();
+        }
+    </script>
+</head>
+
+<body onload="drawCircleNumbers(event)">
+    <canvas width="400px" height="400px" style="border: 2px solid black;" id="canvas"></canvas>
+    <br>
+    <button onclick="setInterval(loadReloj,600)">Load reloj</button>
+</body>
+
+</html>

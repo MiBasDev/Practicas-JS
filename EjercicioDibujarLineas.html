@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar lineas</title>
+    <script>
+        // Método para dibujar una línea y su paralela.
+        function drawLine(event) {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                var x = parseInt(document.getElementById("x").value);
+                var y = parseInt(document.getElementById("y").value);
+                //var xActual = event.clientX - canvas.getBoundingClientRect().left;
+                //var yActual = event.clientY - canvas.getBoundingClientRect().top;
+
+                context.beginPath(); // Start a new path
+                context.moveTo(x, y); // Move the pen to (30, 50)
+                context.lineTo(x + 100, y); // Draw a line to (150, 100)
+                context.stroke(); // Render the path
+
+                context.beginPath(); // Start a new path
+                context.moveTo(x, y + 10); // Move the pen to (30, 50)
+                context.lineTo(x + 100, y + 10); // Draw a line to (150, 100)
+                context.stroke(); // Render the path
+            }
+        }
+
+        // Método para dibujar un cuadrado.
+        function drawSquare(event) {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                var x = event.clientX - canvas.getBoundingClientRect().left;
+                var y = event.clientY - canvas.getBoundingClientRect().top;
+
+                context.beginPath();
+                context.moveTo(x, y);
+                context.lineTo(x + 100, y);
+                context.lineTo(x + 100, y + 100);
+                context.lineTo(x, y + 100);
+                context.lineTo(x, y);
+                context.lineWidth = 2;
+                context.stroke();
+            }
+        }
+
+        // Método para dibujar líneas random.
+        function drawRandomLines(event) {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                var x = Math.floor(Math.random() * parseInt(canvas.width));
+                var y = Math.floor(Math.random() * parseInt(canvas.height));
+
+                context.beginPath();
+                context.moveTo(x, y);
+                for (let i = 0; i < 8; i++) {
+                    context.lineTo(Math.floor(Math.random() * parseInt(canvas.width)),
+                        Math.floor(Math.random() * parseInt(canvas.height)));
+                }
+                context.lineTo(x, y);
+                context.lineWidth = 2;
+                context.stroke();
+            }
+        }
+    </script>
+</head>
+
+<body onclick="drawSquare(event)">
+
+
+    <canvas width="400px" height="400px" style="border: 2px solid black;" id="canvas"></canvas>
+    <br>
+    <input type="number" id="x" placeholder="parámetros x">
+    <input type="number" id="y" placeholder="parámetros y">
+    <button onclick="drawLine(event)">Dibujar</button>
+    <br>
+    <button onclick="drawRandomLines(event)">Dibujar Random</button>
+</body>
+
+</html>

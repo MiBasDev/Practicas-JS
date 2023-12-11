@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 19 Manejo de fecha y hora</title>
+</head>
+
+<body>
+    <script>
+        var d = new Date();
+        document.write(d.getTime());
+
+        document.write("</br>" + d.getFullYear());
+        document.write("</br>" + d.getMonth());
+        document.write("</br>" + d.getMinutes());
+
+        d.setFullYear(2030);
+        document.write("</br>" + d.getFullYear());
+
+        document.write("</br>" + d.getDay() + "-" + d.getMonth() + "-" + d.getFullYear());
+
+        d.setMonth(10);
+        document.write("</br>" + d.getDay() + "-" + d.getMonth() + "-" + d.getFullYear());
+
+        d.setHours(23);
+        d.setSeconds(40)
+        document.write("</br>" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds());
+    </script>
+</body>
+
+</html>

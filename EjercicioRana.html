@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio Rana</title>
+    <style>
+        /* Estilos para las imágenes */
+        #ranita {
+            position: absolute;
+            width: 100px;
+            border: 2px solid black;
+        }
+
+        #caja {
+            position: absolute;
+            width: 200px;
+            opacity: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="ranita" class="ranita" src="ranita.jpg" alt="ranita">
+
+    <script>
+        // Contador de clics en la ranita
+        var contadorClicks = 0;
+        // Variable para la caja
+        var caja;
+        // Rutas de las imágenes
+        const imgs = ["ranita.jpg", "caja.png"];
+        // Obtener la referencia a la ranita 
+        const ranita = document.getElementById('ranita');
+        // Dimensiones ventana
+        var anchoVentana = window.innerWidth - ranita.width;
+        var altoVentana = window.innerHeight - ranita.height;
+        // Verificar si la ranita colisiona con la caja
+        var rectRanita;
+        var rectCaja;
+        // Escala de la caja
+        var escala = 1;
+
+        // Evento al pasar el ratón sobre la ranita
+        ranita.addEventListener('mouseenter', moveRanita);
+        // Evento al presionar las flechas del teclado para mover la caja
+        document.addEventListener('keydown', moveCaja);
+
+        // Función para mover la ranita de manera aleatoria
+        function moveRanita(event) {
+            var nuevoX = Math.floor(Math.random() * anchoVentana);
+            var nuevoY = Math.floor(Math.random() * altoVentana);
+            ranita.style.left = nuevoX + 'px';
+            ranita.style.top = nuevoY + 'px';
+
+            contadorClicks++;
+
+            // Si tocan la ranita 5 veces, creamos la caja
+            if (contadorClicks === 5) {
+                caja = document.createElement('img');
+                caja.setAttribute('src', imgs[1]);
+                caja.setAttribute('alt', 'caja');
+                caja.setAttribute('id', 'caja');
+                caja.classList.add('caja');
+                document.body.appendChild(caja);
+                // Evento para aumentar el tamaño de la caja al hacer click
+                caja.addEventListener('click', increaseSize);
+            }
+
+            rectRanita = ranita.getBoundingClientRect();
+            rectCaja = caja.getBoundingClientRect();
+
+            gameWin();
+        }
+
+        // Función para mover la caja con las flechas del teclado
+        function moveCaja(event) {
+            let paso = 100; // Cantidad de píxeles para mover la caja
+            caja = document.getElementById("caja");
+
+            let nuevaX = parseInt(caja.style.left);
+            let nuevaY = parseInt(caja.style.top);
+
+            switch (event.key) {
+                case 'w':
+                    nuevaY = Math.max(0, caja.offsetTop - paso);
+                    break;
+                case 'a':
+                    nuevaX = Math.max(0, caja.offsetLeft - paso);
+                    break;
+                case 's':
+                    nuevaY = Math.min(altoVentana - caja.offsetHeight, caja.offsetTop + paso);
+                    break;
+                case 'd':
+                    nuevaX = Math.min(anchoVentana - caja.offsetWidth, caja.offsetLeft + paso);
+                    break;
+            }
+
+            caja.style.left = nuevaX + 'px';
+            caja.style.top = nuevaY + 'px';
+
+            gameWin();
+        }
+
+        // Método para controlar el final del juego.
+        function gameWin() {
+            if (
+                rectRanita.x < rectCaja.x + rectCaja.width &&
+                rectRanita.x + rectRanita.width > rectCaja.x &&
+                rectRanita.y < rectCaja.y + rectCaja.height &&
+                rectRanita.y + rectRanita.height > rectCaja.y
+            ) {
+                alert('¡Has ganado!');
+            }
+        }
+
+        // Función para aumentar el tamaño de la caja
+        function increaseSize() {
+            escala += 0.1;
+            caja.style.transform = `scale(${escala})`;
+        }
+    </script>
+</body>
+
+</html>

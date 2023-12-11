@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujar círculo</title>
+    <script>
+        // Método para pintar un "círculo".
+        function drawCircle(event) {
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                // Punto de inicio.
+                var x = parseInt(canvas.width) / 2;
+                var y = parseInt(canvas.height) / 2;
+                //Radio
+                var radius = 100;
+                // Ángulos a radianes.
+                let angle1 = (30 * Math.PI) / 180;
+                let angle2 = (60 * Math.PI) / 180;
+                // Calculamos los puntos a los que vamos a saltar.
+                let x1 = Math.cos(angle1) * radius;
+                let y1 = Math.sin(angle1) * radius;
+                let x2 = Math.cos(angle2) * radius;
+                let y2 = Math.sin(angle2) * radius;
+                // Pintamos el círculo.
+                context.beginPath();
+                context.moveTo(x + radius, y);
+                context.lineTo(x + x1, y - y1);
+                context.lineTo(x + x2, y - y2);
+                context.lineTo(x, y - radius);
+                context.lineTo(x - x2, y - y2);
+                context.lineTo(x - x1, y - y1);
+                context.lineTo(x - radius, y);
+                context.lineTo(x - x1, y + y1);
+                context.lineTo(x - x2, y + y2);
+                context.lineTo(x, y + radius);
+                context.lineTo(x + x2, y + y2);
+                context.lineTo(x + x1, y + y1);
+                context.lineTo(x + radius, y);
+                context.lineWidth = 2;
+                context.stroke();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <canvas width="400px" height="400px" style="border: 2px solid black;" id="canvas"></canvas>
+    <br>
+    <button onclick="drawCircle(event)">Dibujar Círculo</button>
+</body>
+
+</html>

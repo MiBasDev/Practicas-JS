@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practica 7 Funciones Anónimas</title>
+  </head>
+  <body>
+    <script>
+      //asignación de una función anónima a una variable
+      let f = function (a, b) {
+        return a + b;
+      };
+      document.write(f(3, 1));
+
+      //ejecución de una función sin ser invocada
+      (function () {
+        a = 5;
+        document.write("<br />" + a ** 2);
+      })();
+
+      //funciones anónimas con parámetros
+      x = 5;
+      y = 10;
+
+      //encapsulación de variables
+      z = (function (x, y) {
+        return x + y;
+      }(1, 2));
+      document.write("<br />" + z);
+      document.write("<br />" + eval(x + y));
+
+      var cadena1 = "<br />Hola";
+      var cadena2 = " y adios";
+      (function (str1, str2) {
+        document.write(str1 + str2);
+      })(cadena1, cadena2);
+    </script>
+  </body>
+</html>

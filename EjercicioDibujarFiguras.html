@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio dibujar figuras</title>
+</head>
+<script>
+    // Función para crear figuras según sus lados.
+    function createFigures() {
+        var canvas = document.getElementById("canvas");
+        var ladosFigura = document.querySelector("input[name=figura]:checked").value;
+        if (canvas.getContext) {
+            var context = canvas.getContext("2d");
+            // Punto de inicio.
+            var x = parseInt(canvas.width) / 2;
+            var y = parseInt(canvas.height) / 2;
+            // Radio.
+            var radius = 100;
+            var angles = 360 / ladosFigura;
+            var arrayAngles = [];
+            // Array de ángulos.
+            for (let i = 0; i < ladosFigura; i++) {
+                arrayAngles.push(angles);
+            }
+            console.log(arrayAngles)
+            // Pasamos los ángulos a radianes.
+            var positionsX = createPositionsX(arrayAngles, radius);
+            var positionsY = createPositionsY(arrayAngles, radius);
+            // Sacamos las coordenadas finales.
+            let coordsX = finalCoordsX(positionsX, x, radius);
+            let coordsY = finalCoordsY(positionsY, y, radius)
+            // Pintamos los puntos del círculo.
+            let width = 2;
+            context.beginPath();
+            context.moveTo(coordsX[0], coordsY[0]);
+            for (let i = 1; i < coordsX.length; i++) {
+                context.lineTo(coordsX[i], coordsY[i]);
+            }
+            context.lineTo(coordsX[0], coordsY[0]);
+            context.lineWidth = 2;
+            context.stroke();
+        }
+    }
+
+    // Función para sacar las coordenadas finales de X.
+    function finalCoordsX(positionsX, x, radius) {
+        let finalCoords = [];
+        let counter = 0;
+        console.log("P " + positionsX);
+        for (let i = 0; i < positionsX.length; i++) {
+            if (counter < (positionsX.length / 4)) {
+                finalCoords.push(x + positionsX[i]);
+            } else if (counter < (positionsX.length / 2)) {
+                finalCoords.push(x - positionsX[i]);
+            } else {
+                finalCoords.push(x + positionsX[i]);
+            }
+            counter++;
+        }
+        console.log("F " + finalCoords);
+        return finalCoords;
+    }
+
+    // Función para sacar las coordenadas finales de Y.
+    function finalCoordsY(positionsY, y, radius) {
+        let finalCoords = [];
+        let counter = 0;
+        console.log("Py " + positionsY);
+        for (let i = 0; i < positionsY.length; i++) {
+            if (counter < (positionsY.length / 2)) {
+                finalCoords.push(y + positionsY[i]);
+            } else {
+                finalCoords.push(y - positionsY[i]);
+            }
+            counter++;
+        }
+        console.log("F " + finalCoords);
+        return finalCoords;
+    }
+
+    // Función para calcular los radianes de los ángulos de X.
+    function createPositionsX(angles, radius) {
+        var positionsX = [];
+        angles.forEach(value => {
+            positionsX.push(Math.cos((value * Math.PI) / 180) * radius);
+        });
+        console.log(positionsX);
+        return positionsX;
+    }
+
+    // Función para calcular los radianes de los ángulos de Y.
+    function createPositionsY(angles, radius) {
+        var positionsY = [];
+        angles.forEach(value => {
+            positionsY.push(Math.sin((value * Math.PI) / 180) * radius);
+        });
+        console.log(positionsY);
+        return positionsY;
+    }
+</script>
+
+<body>
+    <canvas width="400px" height="400px" style="border: 2px solid black;" id="canvas"></canvas>
+    <br>
+    <input type="radio" name="figura" id="cuadrado" value="4" onclick="createFigures()">
+    <label for="cuadrado">Cuadrado</label>
+    <br>
+    <input type="radio" name="figura" id="pentagono" value="5" onclick="createFigures()">
+    <label for="pentagono">Pentágono</label>
+    <br>
+    <input type="radio" name="figura" id="hexagono" value="6" onclick="createFigures()">
+    <label for="hexagono">Hexágono</label>
+    <br>
+    <input type="radio" name="figura" id="otro" onclick="createFigures()">
+    <label for="otro">Otro:</label><input type="number" name="otraFigura" id="otraFigura">
+</body>
+
+</html>

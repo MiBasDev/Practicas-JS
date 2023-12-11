@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Expresiones Regulares 2</title>
+</head>
+
+<body>
+    <p id="textRandom"></p>
+    <p id="anaPosition"></p>
+    <p id="roiPosition"></p>
+    <p id="evaPosition"></p>
+    <script>
+        // Llamamos a la función cada vez que cargamos la pantalla.
+        onload(generateText());
+
+        // Función que genera un texto aleatorio con unos caracteres dados y busca unos nombres en ellos, 
+        // sacando la posición en el texto de los nombres encontrados.
+        function generateText() {
+            let maxTextLetters = 5000;
+            let randomLetters = ["a", "n", "e", "r", "o", "i", "v", " ", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            let txtToRandomize = "";
+            for (let i = 0; i < maxTextLetters; i++) {
+                txtToRandomize += randomLetters[Math.floor(Math.random() * (randomLetters.length - 0) + 0)];
+            }
+
+            // Declaración de variables para sacar las posiciones.
+            let anaPosTotal = [];
+            let roiPosTotal = [];
+            let evaPosTotal = [];
+            let anaPos;
+            let roiPos;
+            let evaPos;
+            do {
+                anaPos = txtToRandomize.search(/ana/i);
+                if (anaPos != -1) {
+                    anaPosTotal.push(anaPos);
+                    txtToRandomize = txtToRandomize.replace(/ana/i, "<span style='color:red; font-weight:bold;'>" + "A-N-A" + "</span>");
+                }
+                roiPos = txtToRandomize.search(/roi/i);
+                if (roiPos != -1) {
+                    roiPosTotal.push(roiPos);
+                    txtToRandomize = txtToRandomize.replace(/roi/i, "<span style='color:blue; font-weight:bold;'>" + "R-O-I" + "</span>");
+                }
+                evaPos = txtToRandomize.search(/eva/i);
+                if (evaPos != -1) {
+                    evaPosTotal.push(evaPos);
+                    txtToRandomize = txtToRandomize.replace(/eva/i, "<span style='color:purple; font-weight:bold;'>" + "E-V-A" + "</span>");
+                }
+            } while (anaPos != -1 && roiPos != -1 && evaPos != -1);
+            // Sacamos por pantalla el texto ya tratado.
+            document.getElementById("textRandom").innerHTML = txtToRandomize;
+
+            // Sacamos por pantalla las posiciones de los nombres encontrados o no.
+            document.getElementById("anaPosition").innerHTML = anaPosTotal.length != 0 ?
+                "Posición 'ana' -> " + anaPosTotal.toString() : "Posición 'ana' -> No encontrado";
+            document.getElementById("roiPosition").innerHTML = roiPosTotal.length != 0 ?
+                "Posición 'roi' -> " + roiPosTotal.toString() : "Posición 'roi' -> No encontrado";
+            document.getElementById("evaPosition").innerHTML = evaPosTotal.length != 0 ?
+                "Posición 'eva' -> " + evaPosTotal.toString() : "Posición 'eva' -> No encontrado";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio Áreas cuadrado, triángulo, paralelepípedo y círculo</title>
+  </head>
+  <body>
+    <script>
+      // Área cuadrado
+      var lCuadrado = 2;
+      let aCuadrado = (function (x) {
+        return x * x;
+      })(lCuadrado);
+      document.write(
+        "- Área cuadrado de lado " + lCuadrado + " = " + aCuadrado + "<br/>"
+      );
+
+      // Área triángulo
+      var baseTriangle = 5;
+      var alturaTriangle = 4;
+      let aTriangle = (function (x, y) {
+        return (x * x) / 2;
+      })(baseTriangle, alturaTriangle);
+      document.write(
+        "- Área triángulo de base " +
+          baseTriangle +
+          " y altura " +
+          alturaTriangle +
+          " = " +
+          aTriangle +
+          "<br/>"
+      );
+
+      // Área paralelepípedo
+      var baseParal = 5;
+      var alturaParal = 4;
+      var fondoParal = 6;
+      let aParal = (function (x, y, z) {
+        return 2 * (x * y + x * z + y * z);
+      })(baseParal, alturaParal, fondoParal);
+      document.write(
+        "- Área paralelepípedo de base " +
+          baseParal +
+          ", altura " +
+          alturaParal +
+          " y fondo " +
+          fondoParal +
+          " = " +
+          aParal +
+          "<br/>"
+      );
+
+      // Área círculo
+      var radioCirculo = 3;
+      let aCirculo = (function (x) {
+        return Math.PI * Math.pow(x, 2);
+      })(radioCirculo);
+      document.write(
+        "- Área círculo de radio " + radioCirculo + " = " + aCirculo + "<br/>"
+      );
+
+      // Longitud circunferencia
+      let longCirc = (function (x) {
+        return 2 * Math.PI * x;
+      })(radioCirculo);
+      document.write(
+        "- Longitud de una circunferencia de radio " +
+          radioCirculo +
+          " = " +
+          longCirc
+      );
+    </script>
+  </body>
+</html>

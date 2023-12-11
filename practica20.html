@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 20 Interval y Timeout</title>
+</head>
+
+<body>
+    <p id="timer">0</p>
+    <script>
+        setInterval(timerIncrease, 1000);
+        var timer = 0;
+        function timerIncrease() {
+            timer++;
+            timer % 2 == 0 ? document.getElementById("timer").innerHTML = "<b>" + timer + "</b>" :
+                document.getElementById("timer").innerHTML = timer;
+        }
+    </script>
+</body>
+
+</html>

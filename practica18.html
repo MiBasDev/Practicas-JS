@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 18 Arrays de dos dimensiones</title>
+</head>
+
+<body>
+    <script>
+        // Array de 4x4.
+        var matriz = new Array(4);
+        for (let index = 0; index < matriz.length; index++) {
+            matriz[index] = new Array(4);
+        }
+
+        // Inserción de valores.
+        for (let i = 0; i < matriz.length; i++) {
+            for (let j = 0; j < matriz[i].length; j++) {
+                matriz[i][j] = Math.ceil(Math.random() * 9);
+            }
+        }
+
+        // Recorrido de la matriz y print de valores.
+        for (let i = 0; i < matriz.length; i++) {
+            for (let j = 0; j < matriz[i].length; j++) {
+                document.write(matriz[i][j] + " ");
+            }
+            document.write("</br>");
+        }
+    </script>
+</body>
+
+</html>

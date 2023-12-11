@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio "Adivina un número"</title>
+  </head>
+  <body>
+    <label for="num">Elige un número del 1 al 15: </label> <br />
+    <input type="number" name="num" id="num" required />
+    <button name="butCheck" id="check" onclick="getNum()">COMPROBAR</button>
+    <br />
+    <!--<p>Número de aciertos: <span id="hits">0</span></p>
+    <p>Número de fallos: <span id="fails">0</span></p>
+    <p id="random"></p>-->
+
+    <script>
+      /*const MAX = 15,
+        MIN = 1;
+      var hits = 0,
+        fails = 0;
+      // Investiga la generación de números aleatorios en JS.
+      // Programar un código para el juego "Adivina un número".
+      function buttonClicked() {
+        // Creamos un número aleatorio cada vez que le dan click al botón.
+        var randomNum = Math.round(Math.random() * MAX);
+        // Cogemos y almacenamos el valor del input para comprobarlo posteriormente.
+        var inputNum = document.getElementById("num").value;
+        if (inputNum == randomNum) {
+          hits++;
+          document.getElementById("hits").innerHTML = hits;
+          document.getElementById("random").style = style = "color: green;";
+          document.getElementById("random").innerHTML =
+            "¡ACERTASTE! El número aleatorio era: " + randomNum;
+        } else if (inputNum > MAX || inputNum < MIN) {
+          window.alert("¡Ese número está fuera de rango!");
+        } else {
+          fails++;
+          document.getElementById("fails").innerHTML = fails;
+          document.getElementById("random").style = style = "color: black;";
+          document.getElementById("random").innerHTML =
+            "¡FALLASTE! El número aleatorio era: " + randomNum;
+        }
+      }*/
+
+      // Definimos los límites máximo y mínimo como constantes.
+      const MAX = 15,
+        MIN = 1;
+
+      // Procesamos el número.
+      function getNum() {
+        numCogido = document.getElementById("num").value;
+        if (numCogido > MAX || numCogido < MIN) {
+          window.alert("¡Ese número está fuera de rango!");
+        } else {
+          fails = 0;
+          do {
+            random = Math.round(Math.random() * MAX);
+            fails++;
+          } while (numCogido != random);
+          window.alert("ACERTASTE! Has necesitado " + fails + " intentos.");
+        }
+      }
+    </script>
+  </body>
+</html>

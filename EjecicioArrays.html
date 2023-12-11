@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio arrays</title>
+</head>
+
+<body>
+    <label for="arrayNumList">Escribe número separados por ',': </label>
+    <input type="text" name="arrayNumList" id="arrayNumList" placeholder="escribe aquí" />
+    <button onclick="operations()">Operar</button>
+    <p id="listaNums"></p>
+    <p id="sumaPares"></p>
+    <p id="multImpares"></p>
+    <p id="media"></p>
+    <p id="max"></p>
+    <p id="min"></p>
+    </br>
+    <script>
+        // Main del programa
+        function operations() {
+            const NUMS = document.getElementById("arrayNumList").value.split(",");
+            let lista = "";
+            // Inicializamos a 0 la suma
+            let resultSum = 0;
+            // Inicializamos a 1 la multiplicación
+            let resultMult = 1;
+            let sumaNums = 0;
+
+            NUMS.forEach(element => {
+                lista = lista + element + " ";
+                // Operador ternario para los pares e impares
+                (element % 2 == 0) ? resultSum += parseInt(element) : resultMult *= parseInt(element);
+                // Calculamos la suma de todos para luego hacer la media
+                sumaNums += parseInt(element);
+            });
+
+            // Rellenamos los <p> antes creados
+            document.getElementById("listaNums").innerHTML = "Los números son: " + lista;
+            document.getElementById("sumaPares").innerHTML = "La suma de los pares es: " + resultSum;
+            document.getElementById("multImpares").innerHTML = "La multiplicación de los impares es: " + resultMult;
+            document.getElementById("media").innerHTML = "La media es: " + (sumaNums / NUMS.length);
+            // Usamos la biblioteca Math para buscar el max y el min
+            document.getElementById("max").innerHTML = "El número mayor es: " + Math.max.apply(null, NUMS);
+            document.getElementById("min").innerHTML = "El número menor es: " + Math.min.apply(null, NUMS);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 22 control de errores y excepciones</title>
+</head>
+
+<body>
+    <p>Introduzca un número entre 50 y 100:</p>
+    <input type="text" name="dato" id="dato">
+    <button type="button" onclick="validate()">Comprobar valor</button>
+
+    <p id="err_txt"></p>
+
+    <script>
+        function validate() {
+            var err_msg, x;
+            err_msg = document.getElementById("err_txt");
+            err_msg.innerHTML = "";
+            x = document.getElementById("dato").value;
+            try {
+                if (x == "") throw "No hay dato";
+                if (isNaN(x)) throw "El dato no es un numero";
+                x = Number(x);
+                if (x < 50) throw "Numero muy pequeño";
+                if (x > 100) throw "Numero muy grande";
+            } catch (err) {
+                err_msg.innerHTML = "Error: " + err;
+            } finally {
+                document.getElementById("dato").value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

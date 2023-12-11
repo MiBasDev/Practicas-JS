@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio dibujar píxel</title>
+    <script>
+        // Método para dibujar puntos en el canvas.
+        function draw(event) {
+            var canvas = document.getElementById("canvas");
+
+            if (canvas.getContext) {
+                var context = canvas.getContext("2d");
+                var xActual = event.clientX - canvas.getBoundingClientRect().left;
+                var yActual = event.clientY - canvas.getBoundingClientRect().top;
+                xAnterior = xActual - 10;
+                yAnterior = yActual - 10;
+
+                context.beginPath();
+                context.fillStyle = "#000000";
+                context.fillRect(xActual, yActual, 5, 5);
+            }
+        }
+    </script>
+</head>
+
+<body onclick="draw(event)">
+    <canvas width="400px" height="400px" style="border: 2px solid black;" id="canvas"></canvas>
+</body>
+
+</html>

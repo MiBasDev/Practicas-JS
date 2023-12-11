@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" onpointermove="mouseDentroScreen(event)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio coordenadas ratón</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20%;
+        }
+
+        #div1 {
+            width: 500px;
+            height: 300px;
+            background-color: cyan;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 150px;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body onpointermove="mouseDentroBody(event)">
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <div id="container">
+        <div id="div1">
+            <div id="div2" onpointermove="mouseDentroDiv(event)">
+            </div>
+        </div>
+    </div>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+    <p>a</p>
+
+    <script>
+        function mouseDentroBody(event) {
+            document.getElementById("p1").innerHTML = "Coordenadas body: (" + event.pageX + "," + event.pageY + ")";
+        }
+
+        function mouseDentroDiv(event) {
+            document.getElementById("p2").innerHTML = "Coordenadas div: (" + event.clientX + "," + event.clientY + ")";
+        }
+
+        function mouseDentroScreen(event) {
+            document.getElementById("p3").innerHTML = "Coordenadas screen: (" + event.screenX + "," + event.screenY + ")";
+        }
+
+    </script>
+</body>
+
+</html>

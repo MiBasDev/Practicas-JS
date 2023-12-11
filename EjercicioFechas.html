@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio inserción de fechas si Date()</title>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Inserción de fechas</legend>
+        <label for="fecha">Fecha: </label> <br>
+        <input type="text" name="fecha" id="fecha" placeholder="dd/mm/yyyy"><br><br>
+        <button type="button" onclick="writeDate()">Click</button><br>
+        <p id="resultDate"></p>
+        <script>
+            function writeDate() {
+                // Declaramos e inicializamos un array con los nombres de los meses
+                const MONTHS = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
+                    , "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                // Cogemos el valor del input y lo almacenamos en un array con el split
+                const FECHA = document.getElementById("fecha").value.split("/");
+                // Lo sacamos por pantalla
+                document.getElementById("resultDate").innerHTML = MONTHS[parseInt(FECHA[1]) - 1] + ", día " +
+                    parseInt(FECHA[0]) + " del año " + FECHA[2] + ".";
+            }
+        </script>
+    </fieldset>
+</body>
+
+</html>

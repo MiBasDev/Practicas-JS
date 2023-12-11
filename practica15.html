@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practica 15 Arrays</title>
+  </head>
+  <body>
+    <script>
+      var colores = ["rojo", "azul", "verde"];
+      var vector = ["hola", 343, 7.656, true];
+
+      // Sacamos valores del array
+      document.write(colores[0]);
+      document.write("<br/>" + colores[colores.length - 1]);
+      document.write("<br/>" + vector + "<br/>");
+
+      // Sacamos valores del vector en un lista
+      document.write("<ul>");
+      for (i = 0; vector.length; i++) {
+        document.write("<li>" + vector[i] + "</li>");
+      }
+      document.write("</ul>");
+
+      // Sacamos cada valor del array de colores en mayúsculas
+      colores.forEach((valor) => document.write(valor.toUpperCase() + " "));
+
+      // Añadimos por el final
+      vector.push("otro elemento");
+      document.write("<br/>" + vector);
+      // Borramos por el final
+      vector.pop();
+      document.write("<br/>" + vector);
+
+      // Añadimos por el principio
+      vector.unshift("otro elemento");
+      document.write("<br/>" + vector);
+      // Borramos por el principio
+      vector.shift();
+      document.write("<br/>" + vector);
+
+      // Borramos elemento con la posición que queramos
+      delete vector[2];
+      document.write("<br/>" + vector);
+      document.write("<br/>" + vector.length);
+
+      // Añadimos en el punto de inserción 2 sin borrar nada
+      colores.splice(2, 0, "amarillo", "naranja", "violeta");
+      document.write("<br/>" + colores);
+      // Añadimos en el punto de inserción 2 eliminando 1 elemento
+      colores.splice(2, 1, "gris");
+      document.write("<br/>" + colores);
+      // Añadimos elemento vacío en el punto de inserción
+      // 2 y borramos 1 elemento
+      colores.splice(2, 1);
+      document.write("<br/>" + colores);
+
+      // Concatenamos 2 strings
+      var union = colores.concat(vector);
+      document.write("<br/>" + union);
+
+      // Cogemos una sección de un array
+      var trozo = union.slice(1, 7);
+      document.write("<br/>" + trozo);
+    </script>
+  </body>
+</html>

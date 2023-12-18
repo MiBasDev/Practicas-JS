@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos Elementos</title>
+</head>
+
+<body>
+    <label for="nums">Ecribe los numeros</label>
+    <input type="text" id="nums" name="nums" placeholder="Escribe aquí los numeros">
+    <br>
+    <button onclick="calcular()">Calcular</button>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <script>
+        // Función para hacer cálculos con los números dados.
+        function calcular() {
+            // Cogemos los elementos del DOM.
+            const nums = [...document.getElementById("nums").value];
+            const pars = document.getElementsByTagName("p");
+            // Creamos variables.
+            let sum = 0, resta = 0, repres = "", multImpares = 1;
+            // Hacemos las cuentas necesarias con los números.
+            nums.forEach(element => {
+                sum += parseInt(element);
+                resta -= parseInt(element);
+                repres += parseInt(element) + " ";
+                (parseInt(element) % 2 != 0) ? multImpares *= parseInt(element) : "";
+            });
+            // Almacenamos en un array los resultados.
+            let results = [sum, resta, repres, multImpares, Math.max.apply(null, nums), Math.min.apply(null, nums)];
+            // Recorremos los párrafos del DOM para sacar los resultados.
+            for (let i = 0; i < pars.length; i++) {
+                pars[i].innerHTML = results[i];
+            }
+        }
+    </script>
+</body>
+
+</html>

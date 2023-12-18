@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last ej</title>
+    <style>
+        input {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="actual">Fecha actual: </label>
+    <input type="text" name="actual" id="actual" disabled>
+    <br>
+    <label for="fecha">Introduce fecha: </label>
+    <input type="text" name="fecha" id="fecha">
+    <br>
+    <button onclick="procesar()">Procesar</button>
+    <br>
+    <p id="result"></p>
+    <script>
+        const actual = new Date();
+        document.getElementById("actual").value = actual.getDate()
+            + "/" + (actual.getMonth() + 1) + "/" + actual.getFullYear();
+        function procesar() {
+            const fecha = (document.getElementById("fecha").value).split("/");
+            const result = document.getElementById("result");
+            let fechaTratar = new Date(fecha[2], fecha[1] - 1, fecha[0]);
+            let diferencia = actual - fechaTratar;
+            let daysTotal = Math.floor(diferencia / 86400000);
+            let years = Math.floor(daysTotal / 365);
+            let months = Math.floor((daysTotal % 365) / 30);
+            let days = (daysTotal % 365) % 30;
+            result.innerHTML = "Hay " + years + " años, "
+                + months + " meses y " + days + " días de diferencia.";
+        }
+    </script>
+</body>
+
+</html>

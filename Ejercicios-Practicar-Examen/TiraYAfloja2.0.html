@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tira y afloja 2.0</title>
+    <style>
+        body {
+            margin-top: 30%;
+        }
+
+        .disp {
+            background-color: #b2b2b2;
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid black;
+            border-radius: 30px;
+        }
+
+        h3 {
+            margin: 5px 0px;
+        }
+
+        .game {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 20px;
+            align-items: center;
+        }
+
+        input {
+            width: 60px;
+            height: 30px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        p {
+            width: 40px;
+        }
+
+        button {
+            margin-top: 5px;
+            width: 60px;
+            height: 30px;
+            border: 1px solid black;
+            border-radius: 10px;
+            transition: scale 0.1s ease-in;
+        }
+
+        button:hover {
+            background-color: rgb(142, 199, 245);
+            cursor: pointer;
+            scale: 1.05;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="disp">
+        <h3>Tira y Afloja</h3>
+        <div class="game">
+            <p>Miguel</p>
+            <input type="text" name="num" id="num" value="10" disabled>
+            <p>Gala</p>
+        </div>
+        <button onclick="start()">Jugar</button>
+    </div>
+    <script>
+        const winMiguel = 0;
+        const winGala = 20;
+        const MAX = 600;
+        const MIN = 200;
+        var num = document.getElementById("num").value;
+        var intervalMiguel;
+        var intervalGala;
+        
+        function start() {
+            intervalMiguel = setInterval(game, Math.floor(Math.random() * (MAX - MIN) + MIN), "player1");
+            intervalGala = setInterval(game, Math.floor(Math.random() * (MAX - MIN) + MIN), "player2");
+        }
+
+        function game(player) {
+            if (player == "player1") {
+                num--;
+                document.getElementById("num").value = num;
+            } else {
+                num++;
+                document.getElementById("num").value = num;
+            }
+            if (num <= winMiguel) {
+                //document.getElementById("result").innerHTML = "**¡Ha ganado Miguel!**";
+                alert("¡Ha ganado Miguel!");
+                clearInterval(intervalMiguel);
+                clearInterval(intervalGala);
+            } else if (num >= winGala) {
+                //document.getElementById("result").innerHTML = "**¡Ha ganado Gala!**";
+                alert("¡Ha ganado Gala!");
+                clearInterval(intervalMiguel);
+                clearInterval(intervalGala);
+            }
+        }
+    </script>
+</body>
+
+</html>

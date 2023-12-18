@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta apuntes</title>
+</head>
+
+<body>
+    <button id="boton01">11111</button>
+    <button id="boton02">22222</button>
+    <script>
+        //***** QUERY SELECTOR *****//
+        //document.querySelector('input[name="choose"]:checked').value;
+
+
+        //***** FUNCIONES *****//
+        console.log("***** FUNCIONES *****");
+        // Función normal.
+        function hola(nombre) {
+            return "hola " + nombre;
+        }
+        console.log("Función normal: " + hola("Miguel"));
+
+        // Funciones anónimas.
+        let fa1 = function (a, b) { return a + b };
+        console.log("Anónima: " + fa1(2, 5));
+        (function () { a = 5; console.log("Sin ser invocada: " + a * 2); });
+        let fa3 = (function (a, b) { return a + b }(3, 4));
+        console.log("Anónima encapsulada: " + fa3);
+
+        // Funciones flecha.
+        let ff1 = () => { return "¿que tal?"; };
+        console.log("Con return: " + ff1())
+        let ff2 = saludo => saludo + " un nombre";
+        console.log("Con un parámetro: " + ff2("Hola"));
+        let ff3 = (x, y) => { return x * y; };
+        console.log("Con varios parámetros: " + ff3(3, 2));
+
+
+        //***** STRINGS *****//
+        console.log("***** STRINGS *****");
+        let str = "¡Cómo me gusta programar JS!";
+        console.log("Lenght: " + str.length);
+        console.log("IndexOf: " + str.indexOf("gusta"));
+        console.log("Replace: " + str.replace("programar", "cagar"));
+        console.log("Slice: " + str.slice(6, 11));
+        console.log("CharAt: " + str.charAt(10));
+        console.log("Split: " + str.split(" "));
+
+
+        //***** ARRAYS *****//
+        console.log("***** ARRAYS *****");
+        let arr1 = [1, 2, 3, 4, 5, "hola", "adios", true];
+        console.log("ToString: " + arr1.toString());
+        console.log("Join: " + arr1.join("--"));
+        arr1.push("metido");
+        console.log("Push: " + arr1);
+        arr1.pop();
+        console.log("Pop: " + arr1);
+        arr1.unshift("metido");
+        console.log("Shift: " + arr1);
+        arr1.shift();
+        console.log("Unshift: " + arr1);
+        delete arr1[7];
+        console.log("Delete: " + arr1);
+        arr1.splice(8, 0, "heVuelto");
+        console.log("Splice: " + arr1);
+        arr1.sort();
+        console.log("Sort: " + arr1);
+        arr1.reverse();
+        console.log("Reverse: " + arr1);
+        /*
+         * forEach(), map(), filter(), reduce(), every(), some(),
+         * find(), findIndex().
+        */
+
+
+        //***** FECHAS *****//
+        console.log("***** FECHAS *****");
+        let fecha = new Date();
+        let fecha1 = new Date(222324);
+        let fecha2 = new Date("1997-07-09");
+        let fecha3 = new Date("1997", "07", "09", "10", "10", "10", "20");
+        console.log("getFullYear(): " + fecha.getFullYear());
+        console.log("getMonth(): " + fecha.getMonth());
+        console.log("getDate(): " + fecha.getDate());
+        console.log("getHours(): " + fecha.getHours());
+        console.log("getTime(): " + fecha.getTime());
+
+
+        //***** TIMEOUT & INTERVAL *****//
+        let timeout = setTimeout(hola, 1000);
+        clearTimeout(timeout);
+        let interval = setInterval(hola, 1000);
+        clearInterval(interval);
+
+
+        //***** MATH.cosas *****//
+        Math.floor(Math.random() * (3 - 5) + 5);
+
+
+        //***** EXPRESIONES REGULARES *****//
+        console.log("***** EXPRESIONES REGULARES *****");
+        let txt = "Habrá que intentar aprobar este examen.";
+        console.log("search(): " + txt.search(/que/i));
+        console.log("replace(): " + txt.search(/que/i), "QUE NO");
+        console.log("match(): " + txt.match(/intent+/i));
+        console.log("test(): " + (/intent+/g).test(txt));
+        console.log("exec(): " + (/inten+/g).exec(txt));
+
+
+        //***** HTML DOM *****//
+        //element.innerHTML = nuevo_contendio
+        //element.attribute = nuevo_valor
+        //element.style.propiedad = nuevo_estilo
+        //element.setAttribute(atributo, valor)
+        //document.createElement("p")
+        //document.removeChild("p")
+        //document.appendChild("p")
+        //document.write("hola")
+
+
+        //***** EVENTOS *****//
+        // onerror(); // cuando no se puede cargar un documento o una imagen y esta queda rota.
+        // onfocus(); onblur(); // ganar y perder el foco.
+        // ondrag(); ondragend(); ondragenter(); ondragleave(); ondragover(); ondragstart(); // cuando el usuario arrastra cosas.
+        // onreset(); onsubmit(); // al hacer reset o hacer submit un formulario.
+        // onscroll(); onwheel(); // al scrollear o al mover la rueda del ratón.
+        // onchange(); // cuando cambia el estado de un elemento de formulario
+        // onabort(); // cuando un usuario detiene la carga de una imagen.
+        // onpaste(); oncut(); oncopy(); // copiar, cortar y pegar texto.
+        // onselect(); // elementos seleccionados.
+        // onpointermove(); onpointercancel(); onpointerdown(); onpointerenter(); onpointerleave(); onpointerout(); onpointerover(); onpointerup(); // pointer.
+        // onkeydown(); onkeyup(); onkeypress(); // teclas.
+        // onmousemove(); onmousedown(); onmouseenter(); onmouseleave(); onmouseout(); onmouseover(); onmouseup(); oncontextmenu(); ondblclick(); // mouse.
+
+
+        //***** EVENTLISTENER *****//
+        // elemento.addEventListener(evento, funcion, capturaUsuario);
+        // Con función anónima.
+        document.getElementById("boton01").addEventListener("click", function () {
+            alert("Presionaste el botón 1");
+        });
+        // Lamando a una función ya creada.
+        function miFuncion() {
+            alert("Presionaste el botón 2");
+        }
+        document.getElementById("boton02").addEventListener("click", miFuncion);
+
+        // Borrar eventListeners.
+        // document.getElementById("boton").removeEventListener("click",fun);
+
+        //***** NAVEGACIÓN POR NODOS *****//
+        // parentNode
+        // childNodes[numero}
+        // firstChild
+        // lastChild
+        // nextSibling
+        // previousSibling
+        // ----- EJEMPLO -----
+        // <h1 id="id01">Ejemplo</h1>
+        // <p id="id02"></p>Ejemplo
+        // Ejemplo
+        // <script>
+        // document.getElementById("id02").innerHTML =
+        // document.getElementById("id01").firstChild.nodeValue;
+        // var txt =
+        // document.getElementById("id01").childNodes[0].nodeValue;
+        // document.write(txt);
+    </script>
+</body>
+
+</html>

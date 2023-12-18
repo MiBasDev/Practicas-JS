@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse events</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        div {
+            height: 300px;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div:first-child {
+            background-color: gray;
+        }
+
+        div:nth-child(2) {
+            background-color: cyan;
+        }
+
+        div:nth-child(3) {
+            background-color: pink;
+        }
+
+        div:nth-child(4) {
+            background-color: purple;
+        }
+
+        p {
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div onmouseenter="changeColor(this)" onmouseleave="changeColor2(this)">
+        <p>1</p>
+    </div>
+    <div onmouseenter="changeColor(this)" onmouseleave="changeColor2(this)">
+        <p>2</p>
+    </div>
+    <div onmouseenter="changeColor(this)" onmouseleave="changeColor2(this)">
+        <p>3</p>
+    </div>
+    <div onmouseenter="changeColor(this)" onmouseleave="changeColor2(this)">
+        <p>4</p>
+    </div>
+    <script>
+        const divs = document.getElementsByTagName("div");
+
+        // Método para cambiar el color de los divs al entrar.
+        function changeColor(div) {
+            div.style.backgroundColor = "rgba(179, 179, 179, 0.5)";
+            div.style.boxShadow = "1px 1px 20px 5px black";
+        }
+
+        // Método para cambiar el color de los divs al salir.
+        function changeColor2(div) {
+            if (div === divs[0]) {
+                div.style.backgroundColor = "gray";
+            } else if (div === divs[1]) {
+                div.style.backgroundColor = "cyan";
+            } else if (div === divs[2]) {
+                div.style.backgroundColor = "pink";
+            } else {
+                div.style.backgroundColor = "purple";
+            }
+            div.style.boxShadow = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -115,7 +115,7 @@
         console.log("*********************************");
         let txt = "Habrá que intentar aprobar este examen.";
         console.log("search(): " + txt.search(/que/i));
-        console.log("replace(): " + txt.search(/que/i), "QUE NO");
+        console.log("replace(): " + txt.replace(/que/i, "QUE NO"));
         console.log("match(): " + txt.match(/intent+/i));
         console.log("test(): " + (/intent+/g).test(txt));
         console.log("exec(): " + (/inten+/g).exec(txt));
